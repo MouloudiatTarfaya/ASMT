@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#071b12"><meta name="description" content="الموقع الرسمي للجمعية الرياضية مولودية طرفاية - أخبار الفريق، الصور، الهوية الرياضية وتواصل معنا.">
+<title>مولودية طرفاية | A.S. Mouloudiat Tarfaya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .admin-trigger{background:#d4af37;color:#071b12;border:none;border-radius:8px;padding:7px 13px;font-family:inherit;font-weight:800;font-size:.86rem;cursor:pointer}
+  .admin-trigger.active{background:#b91c1c;color:#fff}
+  .pen-btn{display:none;background:rgba(212,175,55,.16);color:#d4af37;border:1px solid rgba(212,175,55,.6);border-radius:6px;width:26px;height:26px;font-size:.8rem;cursor:pointer;align-items:center;justify-content:center;vertical-align:middle;margin-inline-start:6px}
+  body.admin-on .pen-btn{display:inline-flex}
+  .pen-btn:hover{background:#d4af37;color:#071b12}
+  .sec-tools{display:none;gap:8px;margin-top:10px;flex-wrap:wrap}
+  body.admin-on .sec-tools{display:flex}
+  .sec-add{background:#0d683b;color:#fff;border:1px solid rgba(212,175,55,.5);border-radius:7px;padding:6px 12px;font-family:inherit;font-weight:700;font-size:.84rem;cursor:pointer}
+  .item-tools{position:absolute;top:10px;left:10px;z-index:5;display:none;gap:5px}
+  body.admin-on .item-tools{display:flex}
+  .item-tools button{background:rgba(7,27,18,.9);color:#d4af37;border:1px solid rgba(212,175,55,.55);border-radius:6px;padding:3px 8px;font-family:inherit;font-size:.76rem;font-weight:700;cursor:pointer}
+  .item-tools button.rm{color:#fca5a5;border-color:rgba(252,165,165,.55)}
+  .news-image,.gallery-item,.about-visual,.hero-crest,.identity-logo,.kit-card,.contact-card,.match-card-item{position:relative}
+  .matches-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:20px}
+  .match-card-item{background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.22);border-radius:12px;padding:16px}
+  .match-head{font-size:.82rem;color:#d4af37;font-weight:700;margin-bottom:8px}
+  .match-main{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:800}
+  .match-res{background:#071b12;color:#d4af37;border:1px solid rgba(212,175,55,.45);border-radius:7px;padding:3px 10px}
+  .match-sub{margin-top:8px;font-size:.84rem;opacity:.85}
+  .edit-dlg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9999;align-items:center;justify-content:center;padding:16px}
+  .edit-dlg.open{display:flex}
+  .edit-panel{background:#0a2217;color:#fff;border:1px solid #d4af37;border-radius:12px;width:100%;max-width:450px;padding:20px;max-height:90vh;overflow-y:auto}
+  .edit-panel h3{margin:0 0 12px;color:#d4af37;font-size:1.1rem}
+  .edit-row{margin-bottom:11px}
+  .edit-row label{display:block;font-size:.85rem;margin-bottom:4px}
+  .edit-row input,.edit-row textarea{width:100%;padding:8px 10px;border-radius:7px;border:1px solid rgba(255,255,255,.2);background:#071b12;color:#fff;font-family:inherit}
+  .edit-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}
+  .edit-ok{background:#d4af37;color:#071b12;border:none;border-radius:7px;padding:7px 14px;font-family:inherit;font-weight:800;cursor:pointer}
+  .edit-no{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:7px;padding:7px 12px;font-family:inherit;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="topline"><div class="wrap top-inner"><span data-txt="topLeft">طرفاية • العيون الساقية الحمراء • المغرب</span><span class="top-en"><span data-txt="topRight">A.S. MOULOUDIAT TARFAYA · EST. 2005</span> <button type="button" class="pen-btn" title="تعديل" onclick="editTxt('topRight','تعديل الشريط العلوي')">✎</button></span></div></div>
+<header class="header"><div class="wrap nav-wrap">
+<a class="brand" href="#home"><img id="brandLogo" src="assets/club-crest.jpeg" alt="شعار مولودية طرفاية"><span><strong data-txt="brandName">مولودية طرفاية</strong><small data-txt="brandSub">A.S. MOULOUDIAT TARFAYA</small></span></a>
+<button type="button" class="pen-btn" title="تعديل اسم النادي" onclick="editTxt('brandName','تعديل اسم النادي')">✎</button>
+<button type="button" class="pen-btn" title="تعديل الشعار" onclick="editImg('brandLogo','تعديل شعار النادي')">✎</button>
+<button class="menu-toggle" aria-label="فتح القائمة" aria-expanded="false">☰</button>
+<nav class="nav">
+  <a class="active" href="#home">الرئيسية</a>
+  <a href="#about">عن النادي</a>
+  <a href="#news">أخبار الفريق</a>
+  <a href="#matches">نتائج المباريات</a>
+  <a href="#gallery">معرض الصور</a>
+  <a href="#identity">هوية النادي</a>
+  <a class="nav-cta" href="#contact">تواصل معنا <span>←</span></a>
+  <button type="button" class="admin-trigger" id="adminBtn" onclick="toggleAdmin()">دخول الإدارة</button>
+</nav>
+</div></header>
+<main>
+<section class="hero" id="home"><div class="hero-bg"></div><div class="wrap hero-content"><div class="hero-copy"><div class="eyebrow"><i></i> <span data-txt="eyebrow">روح الانتماء • عراقة طرفاية</span> <button type="button" class="pen-btn" title="تعديل" onclick="editTxt('eyebrow','تعديل الشارة')">✎</button></div><h1><span data-txt="h1a">معاً نصنع</span><br><em data-txt="h1b">المجد الأخضر</em> <button type="button" class="pen-btn" title="تعديل" onclick="editTxt('h1a','تعديل العنوان')">✎</button><button type="button" class="pen-btn" title="تعديل" onclick="editTxt('h1b','تعديل العنوان المميز')">✎</button></h1><p><span data-txt="heroDesc">مولودية طرفاية… أكثر من مجرد فريق، إنها حكاية شغف وانتماء، وعزيمة تتجدد في كل مباراة.</span> <button type="button" class="pen-btn" title="تعديل" onclick="editTxt('heroDesc','تعديل الوصف',true)">✎</button></p><div class="hero-actions"><a class="btn btn-primary" href="#news">اكتشف أخبار النادي <span>←</span></a><a class="btn btn-ghost" href="#about">تعرف على النادي</a></div><div class="hero-meta"><span><b>2005</b> سنة التأسيس</span><span class="meta-line"></span><span><b>طرفاية</b> مدينة الانتماء</span></div></div><div class="hero-crest"><div class="crest-glow"></div><img id="heroCrest" src="assets/club-crest.jpeg" alt="شعار الجمعية الرياضية مولودية طرفاية"><div class="item-tools"><button type="button" onclick="editImg('heroCrest','تعديل صورة الشعار')">✎</button></div></div></div><div class="hero-bottom"><div class="wrap"><span>الأخضر • الأحمر • الأبيض</span><span>فخر المدينة… وعشق المستديرة</span></div></div></section>
+<section class="ticker"><div class="wrap ticker-inner"><span class="ticker-label">قلب واحد</span><div><span data-txt="ticker">مولودية طرفاية ✦ العزيمة لا تتوقف ✦ من أجل قميص النادي ✦ 2005 ✦ مولودية طرفاية</span> <button type="button" class="pen-btn" title="تعديل" onclick="editTxt('ticker','تعديل الشريط')">✎</button></div></div></section>
+<section class="section about" id="about"><div class="wrap about-grid"><div class="section-copy"><div class="kicker"><span data-txt="aboutKicker">حكاية نادٍ من قلب الصحراء</span> <button type="button" class="pen-btn" title="تعديل" onclick="editTxt('aboutKicker','تعديل العنوان الفرعي')">✎</button></div><h2><span data-txt="aboutH2a">هوية راسخة…</span><br><span data-txt="aboutH2b">وطموح بلا حدود</span> <button type="button" class="pen-btn" title="تعديل" onclick="editTxt('aboutH2a','تعديل السطر الأول')">✎</button><button type="button" class="pen-btn" title="تعديل" onclick="editTxt('aboutH2b','تعديل السطر الثاني')">✎</button></h2><p><span data-txt="aboutP1">من مدينة طرفاية، تحمل الجمعية الرياضية مولودية طرفاية راية كرة القدم بروح جماعية وطموح متجدد. يجمع النادي بين شغف اللاعبين ودعم الجماهير، ويعمل على ترسيخ قيم الالتزام والروح الرياضية.</span> <button type="button" class="pen-btn" title="تعديل" onclick="editTxt('aboutP1','تعديل الفقرة الأولى',true)">✎</button></p><p><span data-txt="aboutP2">تأسس النادي سنة 2005، ويحمل شعاره رموزاً تستحضر البحر وخصوصية المنطقة، في هوية تجمع الأخضر والأحمر والأبيض.</span> <button type="button" class="pen-btn" title="تعديل" onclick="editTxt('aboutP2','تعديل الفقرة الثانية',true)">✎</button></p><a class="text-link" href="#identity">اكتشف رموز الشعار <span>←</span></a></div><div class="about-visual"><img id="aboutImg" src="assets/crest-promo.jpeg" alt="شعار مولودية طرفاية على خلفية ساحلية"><div class="item-tools"><button type="button" onclick="editImg('aboutImg','تعديل صورة القسم')">✎</button></div><div class="year-stamp"><strong>2005</strong><small>سنة التأسيس</small></div></div></div></section>
+<section class="section news" id="news"><div class="wrap"><div class="section-head"><div><div class="kicker">نبض المولودية</div><h2>آخر <span>الأخبار واللحظات</span></h2><div class="sec-tools"><button type="button" class="sec-add" onclick="openPostDlg()">+ إضافة منشور</button></div></div><p>محطات من مسيرة الفريق وذكريات<br>تجمع اللاعبين والأسرة الرياضية.</p></div><div class="news-grid" id="newsGrid"></div></div></section>
+<section class="section matches" id="matches"><div class="wrap"><div class="section-head"><div><div class="kicker">المنافسات والنتائج</div><h2>نتائج <span>المباريات</span></h2><div class="sec-tools"><button type="button" class="sec-add" onclick="openMatchDlg()">+ إضافة نتيجة مباراة</button></div></div><p>متابعة نتائج الفريق والمواجهات الرسمية<br>أولاً بأول.</p></div><div class="matches-list" id="matchesList"></div></div></section>
+<section class="section gallery" id="gallery"><div class="wrap"><div class="section-head light-head"><div><div class="kicker">ألبوم المولودية</div><h2>صور من <span>الميدان</span></h2><div class="sec-tools"><button type="button" class="sec-add" onclick="openGalDlg()">+ إضافة صورة</button></div></div><p>كل صورة تحكي لحظة…<br>وكل لحظة جزء من حكايتنا.</p></div><div class="gallery-grid" id="galleryGrid"></div></div></section>
+<section class="section identity" id="identity"><div class="wrap"><div class="section-head"><div><div class="kicker">ألوان ورموز</div><h2>هوية <span>مولودية طرفاية</span></h2></div><p>شعار يحكي انتماء المدينة<br>وشغفها بكرة القدم.</p></div><div class="identity-grid"><div class="identity-logo"><img id="idLogo" src="assets/club-crest.jpeg" alt="الشعار الرسمي للنادي"><div class="item-tools"><button type="button" onclick="editImg('idLogo','تعديل صورة الشعار')">✎</button></div></div><div class="identity-info"><div class="identity-item"><span class="color-dot green"></span><div><h3>الأخضر</h3><p>لون العزيمة والحيوية وروح الفريق.</p></div></div><div class="identity-item"><span class="color-dot red"></span><div><h3>الأحمر</h3><p>لون الشغف والقوة والإصرار.</p></div></div><div class="identity-item"><span class="color-dot white"></span><div><h3>الأبيض</h3><p>رمز الروح الرياضية واللعب النظيف.</p></div></div><div class="identity-item"><span class="color-dot navy"></span><div><h3>طرفاية • 2005</h3><p>جذور محلية وهوية رياضية تأسست سنة 2005.</p></div></div></div><div class="kit-card"><img id="kitImg" src="assets/home-kit.jpeg" alt="القميص الرياضي لمولودية طرفاية"><div class="item-tools"><button type="button" onclick="editImg('kitImg','تعديل صورة القميص')">✎</button></div><div><small>ألوان النادي</small><h3>قميص يحمل<br>هوية المولودية</h3></div></div></div></div></section>
+<section class="contact" id="contact"><div class="wrap contact-inner"><div><div class="kicker">كن قريباً من النادي</div><h2>المولودية…<br><span>عائلة واحدة</span></h2><p>تابع أخبار الفريق وشاركنا شغف كرة القدم. أبواب النادي مفتوحة لكل محب وداعم.</p></div><div class="contact-card"><img id="contactImg" src="assets/club-crest.jpeg" alt="شعار النادي"><div class="item-tools"><button type="button" onclick="editImg('contactImg','تعديل صورة بطاقة التواصل')">✎</button></div><strong data-txt="contactName">الجمعية الرياضية مولودية طرفاية</strong><small>A.S. MOULOUDIAT TARFAYA</small><div class="contact-divider"></div><span><span data-txt="contactLoc">طرفاية، المملكة المغربية</span> <button type="button" class="pen-btn" title="تعديل" onclick="editTxt('contactLoc','تعديل الموقع')">✎</button></span><a href="https://www.google.com/maps/search/?api=1&query=Tarfaya%2C+Morocco" target="_blank" rel="noopener">موقع النادي على الخريطة ↗</a></div></div></section>
+</main>
+<footer><div class="wrap footer-inner"><a class="footer-brand" href="#home"><img src="assets/club-crest.jpeg" alt=""><span>مولودية طرفاية<small>A.S. MOULOUDIAT TARFAYA</small></span></a><span>© <span id="year"></span> الجمعية الرياضية مولودية طرفاية. جميع الحقوق محفوظة.</span><a href="#home">العودة إلى الأعلى ↑</a></div></footer>
+<div class="lightbox" id="lightbox" aria-hidden="true"><button class="lightbox-close" aria-label="إغلاق">×</button><img src="" alt="عرض الصورة"></div>
+
+<div class="edit-dlg" id="txtDlg">
+  <div class="edit-panel">
+    <h3 id="txtDlgTitle">تعديل النص</h3>
+    <form onsubmit="saveTxt(event)">
+      <input type="hidden" id="txtKey">
+      <div class="edit-row">
+        <input type="text" id="txtOne">
+        <textarea id="txtMulti" rows="4" style="display:none"></textarea>
+      </div>
+      <div class="edit-btns">
+        <button type="button" class="edit-no" onclick="closeDlg('txtDlg')">إلغاء</button>
+        <button type="submit" class="edit-ok">حفظ</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="edit-dlg" id="imgDlg">
+  <div class="edit-panel">
+    <h3 id="imgDlgTitle">تعديل الصورة</h3>
+    <form onsubmit="saveImg(event)">
+      <input type="hidden" id="imgElId">
+      <div class="edit-row"><label>اختر صورة من الجهاز</label><input type="file" accept="image/*" onchange="fileToData(event,'imgFileData')"><input type="hidden" id="imgFileData"></div>
+      <div class="edit-row"><label>أو مسار الصورة</label><input type="text" id="imgPath"></div>
+      <div class="edit-btns">
+        <button type="button" class="edit-no" onclick="closeDlg('imgDlg')">إلغاء</button>
+        <button type="submit" class="edit-ok">حفظ</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="edit-dlg" id="postDlg">
+  <div class="edit-panel">
+    <h3 id="postDlgTitle">إضافة منشور</h3>
+    <form onsubmit="savePost(event)">
+      <input type="hidden" id="postIdx">
+      <div class="edit-row"><label>التصنيف</label><input type="text" id="pMeta" required></div>
+      <div class="edit-row"><label>العنوان</label><input type="text" id="pTitle" required></div>
+      <div class="edit-row"><label>النص</label><textarea id="pDesc" rows="3" required></textarea></div>
+      <div class="edit-row"><label>صورة من الجهاز</label><input type="file" accept="image/*" onchange="fileToData(event,'pFileData')"><input type="hidden" id="pFileData"></div>
+      <div class="edit-row"><label>مسار الصورة</label><input type="text" id="pPath"></div>
+      <div class="edit-btns">
+        <button type="button" class="edit-no" onclick="closeDlg('postDlg')">إلغاء</button>
+        <button type="submit" class="edit-ok">حفظ</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="edit-dlg" id="matchDlg">
+  <div class="edit-panel">
+    <h3 id="matchDlgTitle">إضافة نتيجة مباراة</h3>
+    <form onsubmit="saveMatch(event)">
+      <input type="hidden" id="matchIdx">
+      <div class="edit-row"><label>البطولة / الحالة</label><input type="text" id="mStage" required></div>
+      <div class="edit-row"><label>الفريق الأول</label><input type="text" id="mHome" required></div>
+      <div class="edit-row"><label>النتيجة</label><input type="text" id="mScore" required></div>
+      <div class="edit-row"><label>الفريق الثاني</label><input type="text" id="mAway" required></div>
+      <div class="edit-row"><label>تفاصيل إضافية</label><input type="text" id="mInfo" required></div>
+      <div class="edit-btns">
+        <button type="button" class="edit-no" onclick="closeDlg('matchDlg')">إلغاء</button>
+        <button type="submit" class="edit-ok">حفظ</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="edit-dlg" id="galDlg">
+  <div class="edit-panel">
+    <h3>إضافة صورة للمعرض</h3>
+    <form onsubmit="saveGal(event)">
+      <div class="edit-row"><label>وصف الصورة</label><input type="text" id="gAlt" required></div>
+      <div class="edit-row"><label>صورة من الجهاز</label><input type="file" accept="image/*" onchange="fileToData(event,'gFileData')"><input type="hidden" id="gFileData"></div>
+      <div class="edit-row"><label>مسار الصورة</label><input type="text" id="gPath" value="assets/team-lineup.jpeg"></div>
+      <div class="edit-btns">
+        <button type="button" class="edit-no" onclick="closeDlg('galDlg')">إلغاء</button>
+        <button type="submit" class="edit-ok">إضافة</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+(function(){
+  const PASS = "KHALID66";
+  let admin = false;
+  const defs = {
+    topLeft: "طرفاية • العيون الساقية الحمراء • المغرب",
+    topRight: "A.S. MOULOUDIAT TARFAYA · EST. 2005",
+    brandName: "مولودية طرفاية",
+    brandSub: "A.S. MOULOUDIAT TARFAYA",
+    eyebrow: "روح الانتماء • عراقة طرفاية",
+    h1a: "معاً نصنع",
+    h1b: "المجد الأخضر",
+    heroDesc: "مولودية طرفاية… أكثر من مجرد فريق، إنها حكاية شغف وانتماء، وعزيمة تتجدد في كل مباراة.",
+    ticker: "مولودية طرفاية ✦ العزيمة لا تتوقف ✦ من أجل قميص النادي ✦ 2005 ✦ مولودية طرفاية",
+    aboutKicker: "حكاية نادٍ من قلب الصحراء",
+    aboutH2a: "هوية راسخة…",
+    aboutH2b: "وطموح بلا حدود",
+    aboutP1: "من مدينة طرفاية، تحمل الجمعية الرياضية مولودية طرفاية راية كرة القدم بروح جماعية وطموح متجدد. يجمع النادي بين شغف اللاعبين ودعم الجماهير، ويعمل على ترسيخ قيم الالتزام والروح الرياضية.",
+    aboutP2: "تأسس النادي سنة 2005، ويحمل شعاره رموزاً تستحضر البحر وخصوصية المنطقة، في هوية تجمع الأخضر والأحمر والأبيض.",
+    contactName: "الجمعية الرياضية مولودية طرفاية",
+    contactLoc: "طرفاية، المملكة المغربية"
+  };
+  let txts = JSON.parse(localStorage.getItem("mt_txts")) || {...defs};
+  let imgs = JSON.parse(localStorage.getItem("mt_imgs")) || {};
+  let posts = JSON.parse(localStorage.getItem("mt_posts")) || [
+    { feature:true, tag:"من أجواء الفريق", meta:"روح الفريق • صور", title:"لحظات الفرح… ثمرة العمل الجماعي", desc:"لقطات توثق روح المجموعة وروابط الأسرة الرياضية داخل المستطيل الأخضر.", img:"assets/team-celebration-1.jpeg" },
+    { feature:false, tag:"الفريق الأول", meta:"الفريق • صورة جماعية", title:"المجموعة في أتم الاستعداد", desc:"صورة جماعية للاعبين والأطر المرافقة قبل صافرة البداية.", img:"assets/team-lineup.jpeg" },
+    { feature:false, tag:"المنافسات", meta:"كرة القدم • الروح الرياضية", title:"الرياضة تجمعنا", desc:"مشاهد من أجواء اللقاء والتنافس الرياضي في ملعب كرة القدم.", img:"assets/referees.jpeg" }
+  ];
+  let matches = JSON.parse(localStorage.getItem("mt_matches")) || [
+    { stage:"مباراة رسمية", home:"مولودية طرفاية", score:"2 - 1", away:"الفريق المنافس", info:"الملعب البلدي بطرفاية" }
+  ];
+  let gals = JSON.parse(localStorage.getItem("mt_gals")) || [
+    { large:true, alt:"احتفال لاعبي مولودية طرفاية", src:"assets/team-celebration-2.jpeg" },
+    { large:false, alt:"صورة لاعبي الفريق", src:"assets/team-lineup-wide.jpeg" },
+    { large:false, alt:"لاعبو الفريق والأطر", src:"assets/team-lineup.jpeg" },
+    { large:false, alt:"طاقم المباراة", src:"assets/referees.jpeg" },
+    { large:false, alt:"فرحة اللاعبين", src:"assets/team-celebration-1.jpeg" }
+  ];
+
+  function paintTxt(){
+    document.querySelectorAll("[data-txt]").forEach(e => {
+      const k = e.getAttribute("data-txt");
+      if(txts[k] !== undefined) e.textContent = txts[k];
+    });
+  }
+  function paintImg(){
+    Object.keys(imgs).forEach(id => {
+      const el = document.getElementById(id);
+      if(el && imgs[id]) el.src = imgs[id];
+    });
+  }
+
+  window.toggleAdmin = function(){
+    const b = document.getElementById("adminBtn");
+    if(admin){
+      admin = false; document.body.classList.remove("admin-on");
+      b.classList.remove("active"); b.textContent = "دخول الإدارة"; return;
+    }
+    const p = prompt("كلمة السر:");
+    if(p === PASS){
+      admin = true; document.body.classList.add("admin-on");
+      b.classList.add("active"); b.textContent = "خروج الإدارة";
+    } else if(p !== null){ alert("كلمة السر غير صحيحة"); }
+  };
+
+  window.editTxt = function(k, title, multi=false){
+    if(!admin) return;
+    document.getElementById("txtDlgTitle").textContent = title;
+    document.getElementById("txtKey").value = k;
+    const one = document.getElementById("txtOne"), ml = document.getElementById("txtMulti");
+    if(multi){ one.style.display="none"; ml.style.display="block"; ml.value = txts[k]||""; }
+    else { ml.style.display="none"; one.style.display="block"; one.value = txts[k]||""; }
+    document.getElementById("txtDlg").classList.add("open");
+  };
+  window.saveTxt = function(e){
+    e.preventDefault();
+    const k = document.getElementById("txtKey").value;
+    const ml = document.getElementById("txtMulti"), one = document.getElementById("txtOne");
+    txts[k] = ml.style.display !== "none" ? ml.value : one.value;
+    localStorage.setItem("mt_txts", JSON.stringify(txts));
+    paintTxt(); closeDlg("txtDlg");
+  };
+
+  window.fileToData = function(e, hid){
+    const f = e.target.files && e.target.files[0];
+    if(!f) return;
+    const r = new FileReader();
+    r.onload = ev => { document.getElementById(hid).value = ev.target.result; };
+    r.readAsDataURL(f);
+  };
+  window.editImg = function(id, title){
+    if(!admin) return;
+    document.getElementById("imgDlgTitle").textContent = title;
+    document.getElementById("imgElId").value = id;
+    document.getElementById("imgFileData").value = "";
+    const cur = document.getElementById(id);
+    document.getElementById("imgPath").value = cur ? cur.getAttribute("src") : "";
+    document.getElementById("imgDlg").classList.add("open");
+  };
+  window.saveImg = function(e){
+    e.preventDefault();
+    const id = document.getElementById("imgElId").value;
+    const v = document.getElementById("imgFileData").value || document.getElementById("imgPath").value.trim();
+    if(v){ imgs[id] = v; localStorage.setItem("mt_imgs", JSON.stringify(imgs)); paintImg(); }
+    closeDlg("imgDlg");
+  };
+
+  function paintPosts(){
+    const g = document.getElementById("newsGrid"); g.innerHTML = "";
+    posts.forEach((p,i) => {
+      g.innerHTML += `<article class="news-card ${p.feature?"feature":""}"><div class="news-image"><img src="${p.img}" alt="${p.title}"><span class="image-tag">${p.tag}</span><div class="item-tools"><button type="button" onclick="openPostDlg(${i})">✎</button><button type="button" class="rm" onclick="rmPost(${i})">✕</button></div></div><div class="news-body"><small>${p.meta}</small><h3>${p.title}</h3><p>${p.desc}</p><a href="#gallery">شاهد الصور <span>←</span></a></div></article>`;
+    });
+  }
+  window.openPostDlg = function(i=null){
+    if(!admin) return;
+    document.getElementById("pFileData").value = "";
+    if(i!==null){
+      const p = posts[i];
+      document.getElementById("postDlgTitle").textContent = "تعديل المنشور";
+      document.getElementById("postIdx").value = i;
+      document.getElementById("pMeta").value = p.meta;
+      document.getElementById("pTitle").value = p.title;
+      document.getElementById("pDesc").value = p.desc;
+      document.getElementById("pPath").value = p.img;
+    } else {
+      document.getElementById("postDlgTitle").textContent = "إضافة منشور";
+      document.getElementById("postIdx").value = "";
+      document.getElementById("pMeta").value = "أخبار الفريق";
+      document.getElementById("pTitle").value = "";
+      document.getElementById("pDesc").value = "";
+      document.getElementById("pPath").value = "assets/team-celebration-1.jpeg";
+    }
+    document.getElementById("postDlg").classList.add("open");
+  };
+  window.savePost = function(e){
+    e.preventDefault();
+    const idx = document.getElementById("postIdx").value;
+    const img = document.getElementById("pFileData").value || document.getElementById("pPath").value.trim() || "assets/team-celebration-1.jpeg";
+    const obj = { feature: idx!==""?posts[Number(idx)].feature:false, tag: document.getElementById("pMeta").value.trim(), meta: document.getElementById("pMeta").value.trim(), title: document.getElementById("pTitle").value.trim(), desc: document.getElementById("pDesc").value.trim(), img };
+    if(idx!=="") posts[Number(idx)] = obj; else posts.unshift(obj);
+    localStorage.setItem("mt_posts", JSON.stringify(posts));
+    paintPosts(); closeDlg("postDlg");
+  };
+  window.rmPost = function(i){
+    if(!admin || !confirm("حذف المنشور؟")) return;
+    posts.splice(i,1); localStorage.setItem("mt_posts", JSON.stringify(posts)); paintPosts();
+  };
+
+  function paintMatches(){
+    const l = document.getElementById("matchesList"); l.innerHTML = "";
+    matches.forEach((m,i) => {
+      l.innerHTML += `<div class="match-card-item"><div class="item-tools"><button type="button" onclick="openMatchDlg(${i})">✎</button><button type="button" class="rm" onclick="rmMatch(${i})">✕</button></div><div class="match-head">${m.stage}</div><div class="match-main"><span>${m.home}</span><span class="match-res">${m.score}</span><span>${m.away}</span></div><div class="match-sub">${m.info}</div></div>`;
+    });
+  }
+  window.openMatchDlg = function(i=null){
+    if(!admin) return;
+    if(i!==null){
+      const m = matches[i];
+      document.getElementById("matchDlgTitle").textContent = "تعديل النتيجة";
+      document.getElementById("matchIdx").value = i;
+      document.getElementById("mStage").value = m.stage;
+      document.getElementById("mHome").value = m.home;
+      document.getElementById("mScore").value = m.score;
+      document.getElementById("mAway").value = m.away;
+      document.getElementById("mInfo").value = m.info;
+    } else {
+      document.getElementById("matchDlgTitle").textContent = "إضافة نتيجة مباراة";
+      document.getElementById("matchIdx").value = "";
+      document.getElementById("mStage").value = "مباراة رسمية";
+      document.getElementById("mHome").value = "مولودية طرفاية";
+      document.getElementById("mScore").value = "0 - 0";
+      document.getElementById("mAway").value = "";
+      document.getElementById("mInfo").value = "طرفاية";
+    }
+    document.getElementById("matchDlg").classList.add("open");
+  };
+  window.saveMatch = function(e){
+    e.preventDefault();
+    const idx = document.getElementById("matchIdx").value;
+    const obj = { stage: document.getElementById("mStage").value.trim(), home: document.getElementById("mHome").value.trim(), score: document.getElementById("mScore").value.trim(), away: document.getElementById("mAway").value.trim(), info: document.getElementById("mInfo").value.trim() };
+    if(idx!=="") matches[Number(idx)] = obj; else matches.unshift(obj);
+    localStorage.setItem("mt_matches", JSON.stringify(matches));
+    paintMatches(); closeDlg("matchDlg");
+  };
+  window.rmMatch = function(i){
+    if(!admin || !confirm("حذف النتيجة؟")) return;
+    matches.splice(i,1); localStorage.setItem("mt_matches", JSON.stringify(matches)); paintMatches();
+  };
+
+  function paintGals(){
+    const g = document.getElementById("galleryGrid"); g.innerHTML = "";
+    gals.forEach((x,i) => {
+      g.innerHTML += `<div class="gallery-item ${x.large?"g-large":""}" data-full="${x.src}"><img src="${x.src}" alt="${x.alt}" onclick="openLb('${x.src}')"><div class="item-tools"><button type="button" class="rm" onclick="event.stopPropagation();rmGal(${i})">✕</button></div></div>`;
+    });
+  }
+  window.openGalDlg = function(){
+    if(!admin) return;
+    document.getElementById("gFileData").value = "";
+    document.getElementById("gAlt").value = "";
+    document.getElementById("gPath").value = "assets/team-lineup.jpeg";
+    document.getElementById("galDlg").classList.add("open");
+  };
+  window.saveGal = function(e){
+    e.preventDefault();
+    const src = document.getElementById("gFileData").value || document.getElementById("gPath").value.trim();
+    const alt = document.getElementById("gAlt").value.trim();
+    if(!src) return;
+    gals.push({ large:false, alt, src });
+    localStorage.setItem("mt_gals", JSON.stringify(gals));
+    paintGals(); closeDlg("galDlg");
+  };
+  window.rmGal = function(i){
+    if(!admin || !confirm("حذف الصورة؟")) return;
+    gals.splice(i,1); localStorage.setItem("mt_gals", JSON.stringify(gals)); paintGals();
+  };
+
+  window.openLb = function(src){
+    const lb = document.getElementById("lightbox");
+    if(!lb) return;
+    lb.querySelector("img").src = src;
+    lb.classList.add("open");
+    lb.setAttribute("aria-hidden","false");
+  };
+  window.closeDlg = function(id){ document.getElementById(id).classList.remove("open"); };
+
+  paintTxt(); paintImg(); paintPosts(); paintMatches(); paintGals();
+})();
+</script>
+<script src="script.js"></script>
+</body></html>
