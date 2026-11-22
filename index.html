@@ -149,11 +149,11 @@
     <h3>إضافة صورة للمعرض</h3>
     <form onsubmit="saveGal(event)">
       <div class="edit-row"><label>وصف الصورة</label><input type="text" id="gAlt" required></div>
-      <div class="edit-row"><label>صورة من الجهاز</label><input type="file" accept="image/*" onchange="fileToData(event,'gFileData')"><input type="hidden" id="gFileData"></div>
+      <div class="edit-row"><label>اختر الصور من الجهاز (يمكن تحديد عدة صور معاً)</label><input type="file" id="gFiles" accept="image/*" multiple><input type="hidden" id="gFileData"></div>
       <div class="edit-row"><label>مسار الصورة</label><input type="text" id="gPath" value="assets/team-lineup.jpeg"></div>
       <div class="edit-btns">
         <button type="button" class="edit-no" onclick="closeDlg('galDlg')">إلغاء</button>
-        <button type="submit" class="edit-ok">إضافة</button>
+        <button type="submit" class="edit-ok">إضافة الصور</button>
       </div>
     </form>
   </div>
