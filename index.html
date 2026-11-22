@@ -22,7 +22,7 @@
   .item-tools button.rm{color:#fca5a5;border-color:rgba(252,165,165,.55)}
   .news-image,.gallery-item,.about-visual,.hero-crest,.identity-logo,.kit-card,.contact-card,.match-card-item{position:relative}
   .matches-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:20px}
-  .match-card-item{background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.22);border-radius:12px;padding:16px}
+  .match-card-item{background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.22);border-radius:12px;padding:16px;overflow:hidden}.match-teams{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 0 12px;font-weight:800}.match-teams span{color:#d4af37;font-size:.8rem}.match-result-image{display:block;width:100%;max-height:420px;object-fit:contain;background:#071b12;border-radius:9px;cursor:zoom-in}.match-no-image{padding:22px 10px;text-align:center;border:1px dashed rgba(212,175,55,.35);border-radius:9px;color:#d4af37;font-size:.85rem}
   .match-head{font-size:.82rem;color:#d4af37;font-weight:700;margin-bottom:8px}
   .match-main{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:800}
   .match-res{background:#071b12;color:#d4af37;border:1px solid rgba(212,175,55,.45);border-radius:7px;padding:3px 10px}
@@ -131,7 +131,7 @@
       <input type="hidden" id="matchIdx">
       <div class="edit-row"><label>البطولة / الحالة</label><input type="text" id="mStage" required></div>
       <div class="edit-row"><label>الفريق المضيف</label><input type="text" id="mHome" value="مولودية طرفاية" readonly></div>
-      <div class="edit-row"><label>النتيجة</label><input type="text" id="mScore" required></div>
+      <div class="edit-row"><label>صورة نتيجة المباراة (مطلوبة عند الإضافة)</label><input type="file" id="mResultFile" accept="image/*"><small id="mResultCurrent" style="display:block;margin-top:5px;color:#d4af37"></small></div><input type="hidden" id="mScore">
       <div class="edit-row"><label>الفريق الثاني</label><input type="text" id="mAway" required></div>
       <div class="edit-row"><label>تاريخ ووقت المباراة</label><input type="datetime-local" id="mDate" required></div>
       <div class="edit-row"><label>الملعب / تفاصيل إضافية</label><input type="text" id="mInfo" required></div>
