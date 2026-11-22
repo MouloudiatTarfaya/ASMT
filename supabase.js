@@ -29,5 +29,5 @@ window.savePlayer=async function(e){e.preventDefault();if(!admin)return;try{cons
 window.rmPlayer=async function(i){if(!admin||!confirm("حذف اللاعب نهائياً؟"))return;const {error}=await db.from("players").delete().eq("id",players[i].id);if(error)say("تعذر حذف اللاعب: "+error.message);else{await loadPlayers();say("تم حذف اللاعب.");}};
 window.openLb=function(src){const lb=$("lightbox");lb.querySelector("img").src=src;lb.classList.add("open");lb.setAttribute("aria-hidden","false");};
 window.closeDlg=close;
-db.auth.getSession().then(async({data})=>{if(data.session){try{if(await isClubAdmin()){setAdmin(true);await loadAll();}else await db.auth.signOut();}catch(e){console.error(e);}}else await loadAll();});
+db.auth.getSession().then(async({data})=>{if(data.session){try{if(await isClubAdmin()){setAdmin(true);}else await db.auth.signOut();}catch(e){console.error("تعذر استعادة جلسة الإدارة:",e);await db.auth.signOut();}}await loadAll();}).catch(e=>{console.error("تعذر تهيئة الموقع:",e);say("تعذر الاتصال بخدمات الموقع. حدّث الصفحة وحاول مجدداً.");});
 })();
