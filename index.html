@@ -129,7 +129,8 @@
       <div class="edit-row"><label>الفريق الأول</label><input type="text" id="mHome" required></div>
       <div class="edit-row"><label>النتيجة</label><input type="text" id="mScore" required></div>
       <div class="edit-row"><label>الفريق الثاني</label><input type="text" id="mAway" required></div>
-      <div class="edit-row"><label>تفاصيل إضافية</label><input type="text" id="mInfo" required></div>
+      <div class="edit-row"><label>تاريخ ووقت المباراة</label><input type="datetime-local" id="mDate" required></div>
+      <div class="edit-row"><label>الملعب / تفاصيل إضافية</label><input type="text" id="mInfo" required></div>
       <div class="edit-btns">
         <button type="button" class="edit-no" onclick="closeDlg('matchDlg')">إلغاء</button>
         <button type="submit" class="edit-ok">حفظ</button>
@@ -155,7 +156,6 @@
 
 <script>
 (function(){
-  const PASS = "KHALID66";
   let admin = false;
   const defs = {
     topLeft: "طرفاية • العيون الساقية الحمراء • المغرب",
@@ -206,18 +206,7 @@
     });
   }
 
-  window.toggleAdmin = function(){
-    const b = document.getElementById("adminBtn");
-    if(admin){
-      admin = false; document.body.classList.remove("admin-on");
-      b.classList.remove("active"); b.textContent = "دخول الإدارة"; return;
-    }
-    const p = prompt("كلمة السر:");
-    if(p === PASS){
-      admin = true; document.body.classList.add("admin-on");
-      b.classList.add("active"); b.textContent = "خروج الإدارة";
-    } else if(p !== null){ alert("كلمة السر غير صحيحة"); }
-  };
+  window.toggleAdmin = function(){ alert("يرجى استخدام تسجيل الدخول الآمن."); };
 
   window.editTxt = function(k, title, multi=false){
     if(!admin) return;
@@ -382,5 +371,7 @@
   paintTxt(); paintImg(); paintPosts(); paintMatches(); paintGals();
 })();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
 <script src="script.js"></script>
 </body></html>
