@@ -215,7 +215,7 @@
   // يتم تعريف toggleAdmin الآمن في supabase.js بعد تحميل مكتبة Supabase.
 
   window.editTxt = function(k, title, multi=false){
-    if(!admin) return;
+    if(!window.asmtAdmin) return alert("سجل الدخول إلى الإدارة أولاً.");
     document.getElementById("txtDlgTitle").textContent = title;
     document.getElementById("txtKey").value = k;
     const one = document.getElementById("txtOne"), ml = document.getElementById("txtMulti");
@@ -223,13 +223,17 @@
     else { ml.style.display="none"; one.style.display="block"; one.value = txts[k]||""; }
     document.getElementById("txtDlg").classList.add("open");
   };
-  window.saveTxt = function(e){
+  window.saveTxt = async function(e){
     e.preventDefault();
+    if(!window.asmtAdmin) return alert("سجل الدخول إلى الإدارة أولاً.");
     const k = document.getElementById("txtKey").value;
     const ml = document.getElementById("txtMulti"), one = document.getElementById("txtOne");
-    txts[k] = ml.style.display !== "none" ? ml.value : one.value;
-    localStorage.setItem("mt_txts", JSON.stringify(txts));
-    paintTxt(); closeDlg("txtDlg");
+    const value = ml.style.display !== "none" ? ml.value : one.value;
+    try {
+      await window.asmtSaveSiteContent("txt:"+k, value);
+      txts[k] = value; paintTxt(); closeDlg("txtDlg");
+      alert("تم حفظ النص بنجاح.");
+    } catch(err) { alert("تعذر حفظ النص: "+err.message); }
   };
 
   window.fileToData = function(e, hid){
@@ -240,7 +244,7 @@
     r.readAsDataURL(f);
   };
   window.editImg = function(id, title){
-    if(!admin) return;
+    if(!window.asmtAdmin) return alert("سجل الدخول إلى الإدارة أولاً.");
     document.getElementById("imgDlgTitle").textContent = title;
     document.getElementById("imgElId").value = id;
     document.getElementById("imgFileData").value = "";
@@ -248,12 +252,17 @@
     document.getElementById("imgPath").value = cur ? cur.getAttribute("src") : "";
     document.getElementById("imgDlg").classList.add("open");
   };
-  window.saveImg = function(e){
+  window.saveImg = async function(e){
     e.preventDefault();
+    if(!window.asmtAdmin) return alert("سجل الدخول إلى الإدارة أولاً.");
     const id = document.getElementById("imgElId").value;
     const v = document.getElementById("imgFileData").value || document.getElementById("imgPath").value.trim();
-    if(v){ imgs[id] = v; localStorage.setItem("mt_imgs", JSON.stringify(imgs)); paintImg(); }
-    closeDlg("imgDlg");
+    if(!v) return alert("اختر صورة أو أدخل رابطها.");
+    try {
+      const url = await window.asmtSaveSiteContent("img:"+id, v);
+      imgs[id] = url; paintImg(); closeDlg("imgDlg");
+      alert("تم حفظ الصورة بنجاح.");
+    } catch(err) { alert("تعذر حفظ الصورة: "+err.message); }
   };
 
   function paintPosts(){
